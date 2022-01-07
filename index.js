@@ -1,14 +1,13 @@
-// drive chrome
-// require('chromedriver')
-
-// drive firefox
-require("geckodriver");
-const { Builder, By, Key, until } = require("selenium-webdriver");
+const { Builder, By, Key } = require("selenium-webdriver");
+const firefox = require("selenium-webdriver/firefox");
 const fs = require("fs");
 
 async function test() {
+  const service = new firefox.ServiceBuilder('./node_modules/geckodriver/bin/geckodriver')
+
   let driver = await new Builder()
     .forBrowser("firefox")
+    .setFirefoxService(service)
     .build();
 
   try {
